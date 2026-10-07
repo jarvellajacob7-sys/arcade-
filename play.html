@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Play Amazing Rope Police — Arcade Vault</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="game-page">
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">AV</span> Arcade Vault</a>
+    <a class="back" href="index.html">← Back to games</a>
+  </header>
+
+  <main class="player-wrap">
+    <div class="player-heading">
+      <div>
+        <p class="eyebrow">NOW PLAYING</p>
+        <h1>Amazing Rope Police</h1>
+      </div>
+      <button class="fullscreen" id="fullscreenBtn">Fullscreen</button>
+    </div>
+
+    <div class="player" id="player">
+      <iframe
+        id="gameFrame"
+        title="Amazing Rope Police"
+        src="https://sebastian-105.github.io/Assets-105.github.io/amazing-rope-police/"
+        allow="fullscreen; gamepad; autoplay"
+        loading="eager">
+      </iframe>
+    </div>
+
+    <div class="tips">
+      <div>
+        <strong>Game not loading?</strong>
+        <span>Use the direct game button below, then try fullscreen.</span>
+      </div>
+      <a href="https://sebastian-105.github.io/Assets-105.github.io/amazing-rope-police/" target="_blank" rel="noopener">Open game directly ↗</a>
+    </div>
+
+    <div class="source-note">
+      <strong>Source</strong>
+      <p>
+        The original game is from the pinned Selenite repository commit you provided.
+        The previous version showed source code because jsDelivr serves GitHub HTML
+        files as <code>text/plain</code>; this version uses a web-hosted game page instead.
+      </p>
+      <a href="https://github.com/selenite-cc/selenite-old/tree/9c743188888af0986c8c7b293dbac8f9e421a4ee/amazing-rope-police"
+         target="_blank" rel="noopener">View original source on GitHub ↗</a>
+    </div>
+  </main>
+
+  <script>
+    const player = document.getElementById("player");
+    const button = document.getElementById("fullscreenBtn");
+
+    button.addEventListener("click", async () => {
+      try {
+        if (!document.fullscreenElement) {
+          await player.requestFullscreen();
+        } else {
+          await document.exitFullscreen();
+        }
+      } catch (e) {
+        console.log("Fullscreen unavailable:", e);
+      }
+    });
+
+    document.addEventListener("fullscreenchange", () => {
+      button.textContent = document.fullscreenElement ? "Exit fullscreen" : "Fullscreen";
+    });
+  </script>
+</body>
+</html>
